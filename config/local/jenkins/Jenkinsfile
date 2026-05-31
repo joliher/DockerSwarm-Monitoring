@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    triggers {
+        cron('*/5 * * * *')
+    }
+    stages {
+        stage('Comprobar stack') {
+            steps {
+                sh 'docker stack ls | grep web'
+            }
+        }
+        stage('Desplegar stack') {
+            steps {
+                sh 'docker stack deploy -c ${WORKSPACE}/web.yml web'
+            }
+        }
+        stage('Verificar réplicas') {
+            steps {
+                sh 'docker service ls | grep web_nginx'
+            }
+        }
+        stage('Comprobar nodos') {
+            steps {
+                sh 'docker node ls'
+            }
+        }
+    }
+    post {
+        always {
+            sh '''
+                echo "$(date "+%Y-%m-%d %H:%M:%S"): Pipeline ejecutado" >> ${WORKSPACE}/stack_monitor.log
+            '''
+        }
+        success {
+            sh '''
+                echo "$(date "+%Y-%m-%d %H:%M:%S"): Todos los servicios operativos" >> ${WORKSPACE}/stack_monitor.log
+            '''
+        }
+        failure {
+            sh '''
+                echo "$(date "+%Y-%m-%d %H:%M:%S"): ERROR - Algún servicio no está operativo" >> ${WORKSPACE}/stack_monitor.log
+            '''
+        }
+    }
+}

@@ -1,0 +1,9 @@
+# Stack de nginx
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "${PORT_NGINX}:80"
+    deploy:
+      mode: global
