@@ -1,4 +1,5 @@
 # Añadir nuevos servicios a la swarm
+Si deseas añadir tus propios servicios, ya sea utilizando imágenes oficiales de docker o modificando las imágenes oficiales con tus propias configuraciones, a continuación se te muestra como hacerlo.
 
 ## 1. Crear el fichero de stack
 Crea un nuevo fichero .yml en config/swarm/ siguiendo
@@ -27,3 +28,6 @@ automáticamente junto al resto, añade en deploy.sh:
 Y en teardown.sh:
 
     docker stack rm <nombre>
+
+# Notas
+Si estás utilizando una imagen personalizada, asegúrate de que ésta se encuentre disponible en el nodo manager, así como tener una copia de la misma.

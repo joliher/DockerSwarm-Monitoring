@@ -1,3 +1,8 @@
+// Este fichero define una pipeline de Jenkins para monitorizar el stack "web" que viene predefinido al clonar el repositorio.
+// Si quieres automatizar el despliegue de otros stacks o servicios, puedes modificar esta pipeline o crear otra nueva siguiendo la misma estructura.
+// Se ejecutará cada 5 minutos y realizará las siguientes tareas:
+// 1. Comprobar que el stack de web está desplegado.
+// 2. Desplegar el stack de web si no está desplegado.
 pipeline {
     agent any
     triggers {

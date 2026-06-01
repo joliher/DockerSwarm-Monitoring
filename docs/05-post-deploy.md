@@ -4,7 +4,7 @@
 
     docker stack ls
 
-Deberías ver los stacks web y monitor.
+Deberías ver los stacks "web" y "monitor".
 
 ## Comprobar los servicios
 
@@ -30,3 +30,6 @@ y verifica que los workers aparecen como UP.
 1. Accede a Grafana con las credenciales admin/admin
 2. Ve a Dashboards → New → Import
 3. Importa el fichero config/grafana/dashboard.json
+
+# Añadir servicios custom
+Si deseas añadir tus propios servicios a través de imágenes de docker, ya sean oficiales o personalizadas, procede con [06-adding-services.md](06-adding-services.md)
