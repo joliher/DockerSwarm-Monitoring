@@ -16,8 +16,9 @@ Verificar que se ha instalado correctamente:
 
 ## Grafana
 
-    curl https://packages.grafana.com/gpg.key | sudo apt-key add -
-    echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://apt.grafana.com/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/grafana.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
     sudo apt-get update
     sudo apt-get install grafana
 
@@ -34,6 +35,7 @@ Una vez instalado, es necesario añadir al usuario jenkins
 al grupo docker para que pueda ejecutar comandos de Docker:
 
     sudo usermod -aG docker jenkins
+    logout
 
 Verificar que se ha instalado correctamente:
 

@@ -17,7 +17,7 @@ El proyecto también se puede implementar estando expuesta directamente a Intern
 
 # Configurar el manager como enrutador
 Independientemente de si se decide implementar el proyecto para uso interno (sin estar expuesta a Internet), contratando una dirección IP con tu ISP o configurando el router con una DMZ, los nodos worker necesitarán tener conexión a Internet para poder descargar las imágenes de docker en caso de no tenerlas ya descargadas.
-Para hacer esto añade las siguientes líneas al crontab del manager con `crontab -e`:
+Para hacer esto añade las siguientes líneas al crontab del manager con `sudo crontab -e`:
 
     @reboot echo 1 > /proc/sys/net/ipv4/ip_forward
     @reboot iptables -I FORWARD 1 -i <interfaz_Swarm> -o <interfaz_LAN> -j ACCEPT
