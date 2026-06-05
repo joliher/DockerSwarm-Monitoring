@@ -23,6 +23,7 @@ Para hacer esto añade las siguientes líneas al crontab del manager con `sudo c
     @reboot iptables -I FORWARD 1 -i <interfaz_Swarm> -o <interfaz_LAN> -j ACCEPT
     @reboot iptables -I FORWARD 2 -i <interfaz_LAN> -o <interfaz_Swarm> -m state --state RELATED,ESTABLISHED -j ACCEPT
     @reboot iptables -t nat -I POSTROUTING 1 -o <interfaz_LAN> -j MASQUERADE
+    @reboot iptables -A INPUT -i enp0s3 -p tcp --dport 9100 -j DROP
 
 Sustituye <interfaz_LAN> y <interfaz_Swarm> por los nombres
 de tus interfaces de red (ej: ens18, ens19).

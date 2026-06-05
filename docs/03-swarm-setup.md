@@ -12,6 +12,11 @@ Sustituye <SWARM_MANAGER_IP> con la dirección IP asociada a la interfaz ubicada
 
     docker swarm init --advertise-addr <SWARM_MANAGER_IP>
 
+## Nota
+Si tu **red Lan** ya se encuentra dentro del rango 10.0.0.0/8, se debe de configurar manualmente otra pool de direcciones IP para evitar colisiones.
+
+    docker swarm init --advertise-addr 10.5.0.1 --default-addr-pool 172.30.0.0/16
+
 Guarda el token que devuelve el comando, lo necesitarás en el paso siguiente.
 
 ## 3. Unir los workers a la swarm

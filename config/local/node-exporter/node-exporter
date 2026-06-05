@@ -1,0 +1,1 @@
+ARGS="--web.listen-address=${SWARM_MANAGER_IP}:${PORT_NODE_EXPORTER}"

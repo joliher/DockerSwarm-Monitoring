@@ -4,6 +4,11 @@ services:
   node-exporter:
     image: prom/node-exporter:latest
     ports:
-      - "${PORT_NODE_EXPORTER}:9100"
+      - target: 9100
+        published: ${PORT_NODE_EXPORTER}
+        mode: host
     deploy:
       mode: global
+      placement:
+        constraints:
+          - node.role == worker

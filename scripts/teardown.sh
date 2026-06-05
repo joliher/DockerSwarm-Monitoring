@@ -10,6 +10,9 @@ echo "Esperando a que los servicios se detengan..."
 sleep 10
 
 echo "Deteniendo servicios locales..."
+sudo systemctl stop prometheus-node-exporter
+sudo systemctl disable prometheus-node-exporter
+
 sudo systemctl stop prometheus
 sudo systemctl disable prometheus
 
