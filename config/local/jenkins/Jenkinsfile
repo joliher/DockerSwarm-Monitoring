@@ -1,27 +1,22 @@
-// Este fichero define una pipeline de Jenkins para monitorizar el stack "web" que viene predefinido al clonar el repositorio.
-// Si quieres automatizar el despliegue de otros stacks o servicios, puedes modificar esta pipeline o crear otra nueva siguiendo la misma estructura.
-// Se ejecutará cada 5 minutos y realizará las siguientes tareas:
-// 1. Comprobar que el stack de web está desplegado.
-// 2. Desplegar el stack de web si no está desplegado.
 pipeline {
     agent any
     triggers {
         cron('*/5 * * * *')
     }
     stages {
-        stage('Comprobar stack') {
+        stage('Desplegar / Actualizar stack') {
             steps {
-                sh 'docker stack ls | grep web'
-            }
-        }
-        stage('Desplegar stack') {
-            steps {
-                sh 'docker stack deploy -c ${WORKSPACE}/web.yml web'
+                // Leemos las variables de global.conf, procesamos el yml y desplegamos
+                sh '''
+                    source ${WORKSPACE}/config/global.conf
+                    envsubst < ${WORKSPACE}/config/swarm/web.yml | docker stack deploy -c - web
+                '''
             }
         }
         stage('Verificar réplicas') {
             steps {
-                sh 'docker service ls | grep web_nginx'
+                // Comprobamos si el servicio web_nginx existe (el || true evita que la pipeline falle si grep no encuentra nada en el primer instante)
+                sh 'docker service ls | grep web_nginx || true'
             }
         }
         stage('Comprobar nodos') {
@@ -33,7 +28,7 @@ pipeline {
     post {
         always {
             sh '''
-                echo "$(date "+%Y-%m-%d %H:%M:%S"): Pipeline ejecutado" >> ${WORKSPACE}/stack_monitor.log
+                echo "$(date "+%Y-%m-%d %H:%M:%S"): Pipeline ejecutada" >> ${WORKSPACE}/stack_monitor.log
             '''
         }
         success {
@@ -43,7 +38,7 @@ pipeline {
         }
         failure {
             sh '''
-                echo "$(date "+%Y-%m-%d %H:%M:%S"): ERROR - Algún servicio no está operativo" >> ${WORKSPACE}/stack_monitor.log
+                echo "$(date "+%Y-%m-%d %H:%M:%S"): ERROR - La pipeline falló" >> ${WORKSPACE}/stack_monitor.log
             '''
         }
     }

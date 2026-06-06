@@ -45,9 +45,9 @@ sudo systemctl enable grafana-server
 
 # JENKINS
 echo "Iniciando Jenkins..."
+sudo usermod -aG docker jenkins
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
-sudo usermod -aG docker jenkins
 
 # RESUMEN
 echo "Despliegue completado."
