@@ -10,9 +10,8 @@ Proyecto de infraestructura basado en Docker Swarm con monitorización mediante 
 2. Configura la red siguiendo [docs/02-network-setup.md](docs/02-network-setup.md)
 3. Crea la swarm siguiendo [docs/03-swarm-setup.md](docs/03-swarm-setup.md)
 4. Instala los servicios que se ejecutarán en el nodo Manager (Jenkins, Prometheus y Grafana) [docs/04-services-setup.md](docs/04-services-setup.md)
-5. Modifica [config/global.conf](config/global.conf) con tus IPs y ejecuta [scripts/deploy.sh](scripts/deploy.sh)
-6. Consulta [docs/05-post-deploy.md](docs/05-post-deploy.md) para verificar que todo funciona
-7. Si deseas añadir tus propios servicios personalizados, consulta [docs/06-adding-services.md](docs/06-adding-services.md)
+5. Consulta [docs/05-post-deploy.md](docs/05-post-deploy.md) para verificar que todo funciona correctamente.
+6. Si deseas añadir tus propios servicios personalizados, consulta [docs/06-adding-services.md](docs/06-adding-services.md)
 
 ## Servicios disponibles tras el despliegue
 | Servicio    | Puerto |

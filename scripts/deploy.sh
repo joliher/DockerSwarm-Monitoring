@@ -18,7 +18,7 @@ envsubst < ../config/swarm/monitoring.yml | docker stack deploy -c - monitor &>/
 ## SERVICIOS LOCALES DEL NODO MANAGER.
 # NODE EXPORTER
 echo "Aplicando configuración de Node Exporter..."
-envsubst < ../config/local/node-exporter/node-exporter.defaults | sudo tee /etc/default/prometheus-node-exporter &>/dev/null
+envsubst < ../config/local/node-exporter/node-exporter | sudo tee /etc/default/prometheus-node-exporter &>/dev/null
 sudo systemctl restart prometheus-node-exporter &>/dev/null
 sudo systemctl enable prometheus-node-exporter &>/dev/null
 
@@ -32,7 +32,7 @@ sudo systemctl enable prometheus &>/dev/null
 echo "Iniciando Grafana..."
 
 envsubst < ../config/local/grafana/datasource.yml | sudo tee /etc/grafana/provisioning/datasources/datasource.yml &>/dev/null
-sudo cp ../config/local/grafana/dashboards.yml /etc/grafana/provisioning/dashboards/ &>/dev/null
+sudo cp ../config/local/grafana/dashboard.yml /etc/grafana/provisioning/dashboards/ &>/dev/null
 
 sudo mkdir -p /var/lib/grafana/dashboards
 sudo cp ../config/local/grafana/dashboards/example.json /var/lib/grafana/dashboards/ &>/dev/null

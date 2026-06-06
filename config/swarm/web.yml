@@ -7,3 +7,6 @@ services:
       - "${PORT_NGINX}:80"
     deploy:
       mode: global
+      placement:
+        constraints:
+          - node.role == worker
