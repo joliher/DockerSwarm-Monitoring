@@ -7,7 +7,7 @@ pipeline {
         stage('Desplegar / Actualizar stack') {
             steps {
                 // Leemos las variables de global.conf, procesamos el yml y desplegamos
-                sh '''
+                sh '''#!/bin/bash
                     source ${WORKSPACE}/config/global.conf
                     envsubst < ${WORKSPACE}/config/swarm/web.yml | docker stack deploy -c - web
                 '''
