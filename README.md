@@ -3,6 +3,7 @@
 Proyecto de infraestructura basado en Docker Swarm con monitorización mediante Prometheus, Node Exporter y Grafana, y despliegue automatizado mediante Jenkins.
 
 ## Estructura del repositorio
+```text
 .
 ├── config
 │   ├── global.conf
@@ -35,6 +36,7 @@ Proyecto de infraestructura basado en Docker Swarm con monitorización mediante 
     ├── conf_iptables.sh
     ├── deploy.sh
     └── teardown.sh
+```
 
 ## Primeros pasos
 1. Consulta y completa los requisitos previos en [docs/01-prerequisites.md](docs/01-prerequisites.md)
