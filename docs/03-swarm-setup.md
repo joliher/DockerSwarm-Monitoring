@@ -26,9 +26,22 @@ En cualquiera de ambos casos, guarda el token que devuelve el comando.
 Lo necesitarás en el paso siguiente.
 
 ## 3. Unir los workers a la swarm
-Ejecuta el comando devuelto por el apartado anterior
-o
-Ejecuta esto en cada worker:
+> [!NOTE]
+> Para llevar a cabo este paso, es recomendable conectarse por ssh a los diferentes nodos worker para agilizar el proceso (copiando y pegando el comando).
+> ```bash
+>     # Para instalar ssh en los nodos worker
+>     sudo apt install openssh-server
+>     sudo systemctl start ssh
+> ```
+> y cuando se termine de configurar la swarm:
+> ```bash
+>     # Eliminar servidor ssh de los worker
+>     sudo systemctl stop ssh
+>     sudo systemctl disable ssh
+>     sudo apt purge openssh-server
+> ```
+
+Ejecuta el comando devuelto por el apartado anterior en cada nodo worker que desees unir a la swarm:
 ```bash
     docker swarm join --token <TOKEN> <SWARM_MANAGER_IP>:2377
 ```
