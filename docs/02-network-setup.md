@@ -17,16 +17,15 @@ El proyecto también se puede implementar estando expuesta directamente a Intern
 
 # Configurar el manager como enrutador
 Independientemente de si se decide implementar el proyecto para uso interno (sin estar expuesta a Internet), contratando una dirección IP con tu ISP o configurando el router con una DMZ, los nodos worker necesitarán tener conexión a Internet para poder descargar las imágenes de docker en caso de no tenerlas ya descargadas.
-Para hacer esto añade las siguientes líneas al crontab del manager con `sudo crontab -e`:
+Para hacerlo, previamente será necesario instalar el paquete **iptables-persistent**:
 
-    @reboot echo 1 > /proc/sys/net/ipv4/ip_forward
-    @reboot iptables -I FORWARD 1 -i <interfaz_Swarm> -o <interfaz_LAN> -j ACCEPT
-    @reboot iptables -I FORWARD 2 -i <interfaz_LAN> -o <interfaz_Swarm> -m state --state RELATED,ESTABLISHED -j ACCEPT
-    @reboot iptables -t nat -I POSTROUTING 1 -o <interfaz_LAN> -j MASQUERADE
-    @reboot iptables -A INPUT -i enp0s3 -p tcp --dport 9100 -j DROP
+    sudo apt-get update
+    sudo apt-get install -y iptables-persistent
 
-Sustituye <interfaz_LAN> y <interfaz_Swarm> por los nombres
-de tus interfaces de red (ej: ens18, ens19).
+Una vez instalado, ve a [../scripts/conf_iptables.sh](../scripts/conf_iptables.sh), modifica **IF_LAN** y **IF_WAN** por los nombres
+de tus interfaces de red (ej: ens18, ens19) e **IP_admin** por la IP del equipo que tendrá acceso a los servicios que se eje.
+
+Por último, ejecuta el script.
 
 ## Antes de continuar
 Una vez configurada la red, continúa con

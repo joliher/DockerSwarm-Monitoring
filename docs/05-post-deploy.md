@@ -47,6 +47,9 @@ En Script Path, asegúrate de que ponga exactamente: config/local/jenkins/Jenkin
 Guarda la configuración y dale al botón de "Construir ahora" (Build Now).
 En este momento, Jenkins clonará tus ficheros por primera vez, creará la variable de entorno interna ${WORKSPACE} y ejecutará los pasos automatizados.
 
+A partir de este momento, cada 5 minutos se ejecutará la pipeline, que se asegurará de que el stack web se encuentre siempre desplegado, generando logs acordes.
+Los logs son accesibles desde: /var/lib/jenkins/workspace/<nombre de la tarea>/stack_monitor.log
+
 ## Importar el dashboard en Grafana
 1. Accede a Grafana con las credenciales admin/admin
 2. Ve a Dashboards → New → Import
