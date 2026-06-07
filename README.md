@@ -8,14 +8,13 @@ El proyecto permite:
 
 ## 📑 Tabla de Contenidos
 - [¿Qué es este proyecto?](#qué-es-este-proyecto)
-- [Conceptos clave](#conceptos-clave)
-- [Requisitos](#requisitos)
-- [Arquitectura](#arquitectura)
-- [Instalación rápida](#instalación-rápida-5-pasos)
-- [Servicios disponibles](#servicios-disponibles)
-- [Primeros pasos detallados](#primeros-pasos)
-- [Troubleshooting](#troubleshooting)
-- [Documentación completa](#documentación-completa)
+- [Conceptos básicos](#conceptos-básicos)
+- [Ejemplo de implementación](#ejemplo-de-implementación)
+- [Requisitos Mínimos](#requisitos-mínimos)
+- [Instalación Rápida](#instalación-rápida)
+- [Servicios disponibles](#servicios-disponibles-tras-el-despliegue)
+- [Próximos Pasos](#próximos-pasos)
+- [Referencias Externas](#referencias-externas)
 
 ## ¿Qué es este proyecto?
 Este proyecto surgió como un <u>Trabajo de Final de Grado</u> del Grado Superior de **ASIR**.
@@ -75,13 +74,13 @@ Esto elimina la necesidad de ir uno por uno implementándolo y evita que los ser
 
 Por otro lado, los <u>**Nodos Worker**</u> serán los encargados de hostear el servicio o aplicación final. Son orquestados por el **Nodo Manager** y simplemente se limitan a seguir las órdenes que éste mismo les dé.
 
-## Arquitectura del sistema
+## Ejemplo de implementación
 Explicado todo lo anterior, a continuación se muestra un ejemplo de implementación del proyecto DENTRO de una infraestructura LAN, sin tener en cuenta la posibilidad de que los servicios ejecutados sean accesibles desde Internet (básicamente, para uso interno exclusivamente).
 ![Implementación de Docker Swarm](./img/plano.png)
 
 En la imágen se ve que el **Nodo Manager** actúa como intermediario entre ambas redes. Las peticiones que los clientes deseen hacer deberán ser realizadas a este mismo ordenador, el cuál se encargará de dirigir las peticiones a los diferentes **Nodos Worker** en función de la carga que tengan ambos, utilizando principalmente el protocolo **Round Robin**.
 
-## ⚙️ Requisitos Mínimos
+## Requisitos Mínimos
 
 | Aspecto | Requisito |
 |---------|-----------|
@@ -95,7 +94,7 @@ En la imágen se ve que el **Nodo Manager** actúa como intermediario entre amba
 
 ➡️ **Más detalles:** [docs/01-prerequisites.md](docs/01-prerequisites.md)
 
-## 🚀 Instalación Rápida
+## Instalación Rápida
 1. ✅ [**Paso 1: Valida requisitos**](docs/01-prerequisites.md)
    - ¿Tienes 3 máquinas? ¿Ubuntu instalado? ¿Docker disponible?
 
@@ -127,10 +126,10 @@ En la imágen se ve que el **Nodo Manager** actúa como intermediario entre amba
 > Node Exporter solo es accesible a través de la IP que se comunica con la Red SWARM. Esto se hace para limitar la exposición de información sensible hacia fuera, por lo que solo es accesible si se encuentra físicamente delante del ordenador.
 > La información recopilada por Prometheus no es afectada por esta medida.
 
-## 📚 Próximos Pasos
+## Próximos Pasos
 - ➕ [Agregar tus propios servicios](docs/06-adding-services.md)
 
-## 🔗 Referencias Externas
+## Referencias Externas
 - **Docker Swarm**: https://docs.docker.com/engine/swarm/
 - **Prometheus**: https://prometheus.io/docs/introduction/overview/
 - **Grafana**: https://grafana.com/docs/grafana/latest/
