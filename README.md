@@ -151,15 +151,15 @@ Por otro lado, los <u>**Nodos Worker**</u> serán los encargados de hostear el s
 
 | Aspecto | Requisito |
 |---------|-----------|
-| **Máquinas** | 3 (1 Manager + 2 Workers) |
-| **SO** | Ubuntu Server 20.04+ |
+| **Máquinas** | 2 (1 Manager + 1 Worker) |
+| **SO** | Ubuntu Server 22.04 |
 | **CPU** | 2 núcleos mínimo por máquina |
 | **RAM** | 2 GB mínimo por máquina |
-| **Almacenamiento** | 50 GB por máquina |
-| **Red** | Las 3 máquinas deben verse entre sí |
+| **Almacenamiento** | 30 GB por máquina |
+| **Red** | Las máquinas deben verse entre sí |
 | **Software** | Docker & Docker Daemon |
 
-➡️ **Más detalles:** [docs/01-prerequisites.md](docs/01-prerequisites.md)
+➡️ **Más detalles:** [01-prerequisites.md](docs/01-prerequisites.md)
 
 ## Servicios disponibles tras el despliegue
 | Servicio | Puerto | Función | URL |
