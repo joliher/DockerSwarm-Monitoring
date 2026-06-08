@@ -24,31 +24,66 @@ En él se busca suplir la necesidad de las empresas por tener **servidores resil
 De esta forma, las empresas tendrán la capacidad de implementar sus propios servidores de una manera sencilla y automatizada siempre y cuando tengan la estructura física y de red necesaria.
 
 ## Conceptos básicos
+<hr>
+
 ### ¿Qué es Docker Swarm?
 Es un orquestador de contenedores que se encargará de distribuir servicios (aplicaciones) en diferentes ordenadores. Además, actúa también como un <u>balanceador de carga nativo</u>.
 Gracias a éste se pueden desplegar nuevos servicios o eliminar servicios ya existentes de manera <u>centralizada y remota</u>.
 
+<details>
+<summary>📷 Ver ejemplo</summary>
+
+![Docker Swarm](./img/swarm.png)
+
+</details>
+
 En este proyecto, se usará principalmente para desplegar un **servidor web** y un recopilador de métricas en cada ordenador.
+<hr>
 
 ### ¿Qué es Nginx?
 Es uno de los servicios que desplegará Docker Swarm, y que simplemente se encarga de desplegar un servidor web en cada ordenador que nosotros le indiquemos.
 
+<details>
+<summary>📷 Ver ejemplo</summary>
+
+![Nginx](./img/nginx.png)
+
+</details>
+
 El contenido de la web depende completamente de las necesidades de la persona o empresa en cuestión.
+<hr>
 
 ### ¿Qué es Node Exporter?
 Es otro de los servicios que desplegará Docker Swarm y se encarga de la recopilación de métricas del sistema en cuestión (como % de uso de CPU, memoria utilizada, espacio libre en disco, etc.).
 
 Estas métricas serán recopiladas posteriormente por Prometheus.
+<hr>
 
 ### ¿Qué es Prometheus?
 Es un servicio que se encargará de recopilar y centralizar todas las fuentes de información de los diferentes ordenadores.
 
+<details>
+<summary>📷 Ver ejemplo</summary>
+
+![Prometheus](./img/prometheus.png)
+
+</details>
+
 Básicamente, ofrece una interfaz web a través de la cual poder consultar los datos de TODOS los ordenadores generados por Node Exporter.
+<hr>
 
 ### ¿Qué es Grafana?
 Es un servicio que se encargará de recopilar la información que ha obtenido Prometheus y exponerla a través de grafos y que permite separar la información por colores para mayor claridad visual.
 
+<details>
+<summary>📷 Ver ejemplo</summary>
+
+![Grafana](./img/grafana.png)
+
+</details>
+
 Será la manera en la que consultaremos los datos de forma más bonita.
+<hr>
 
 ### ¿Qué es Jenkins?
 Es un servicio que se encarga de la automatización de tareas en diferentes nodos.
@@ -56,14 +91,31 @@ Es un servicio que se encarga de la automatización de tareas en diferentes nodo
 En este caso, se encargará principalmente de asegurarse que el servicio web (nginx) se encuentre siempre desplegado.
 
 Si **no** es el caso, lo volverá a intentar desplegar indefinidamente, y generará un archivo .log acorde dependiendo de si el servicio se encuentra desplegado o no. Se ejecutará cada **5 minutos** ajustable según las necesidades.
+<details>
+<summary>📷 Ver ejemplo</summary>
+
+![Jenkins](./img/jenkins.png)
+
+</details>
+<hr>
+
+## Ejemplo de implementación
+Explicado todo lo anterior, a continuación se muestra un ejemplo de implementación del proyecto DENTRO de una infraestructura LAN, sin tener en cuenta la posibilidad de que los servicios ejecutados sean accesibles desde Internet (básicamente, para uso interno exclusivamente).
+
+![Implementación de Docker Swarm](./img/plano.png)
+
+En la imágen se ve que el **Nodo Manager** actúa como intermediario entre ambas redes. Las peticiones que los clientes deseen hacer deberán ser realizadas a este mismo ordenador, el cuál se encargará de dirigir las peticiones a los diferentes **Nodos Worker** en función de la carga que tengan ambos, utilizando principalmente el protocolo **Round Robin**.
+<hr>
 
 ### Red LAN
 Será la red desde la que los clientes accederán a los servicios desplegados (servicio web, de correo, etc.) y desde la que el Administrador tendrá acceso a los servicios más internos y sensibles (Prometheus, Grafana, Jenkins, etc.)
+<hr>
 
 ### Red SWARM
 Será la red en donde se encuentren los servidores que hostearán las aplicaciones finales (las que se llevarán la mayor carga de trabajo).
 
 Esta red está pensada para que sea fácilmente escalable, ya que si se desean añadir nuevos servidores o sustituir otros viejos, simplemente habrá que conectarlos a esta red y ejecutar un par de comandos.
+<hr>
 
 ### Nodos MANAGER y WORKER
 El <u>**Nodo Manager**</u> será el que separe la **Red LAN** de la **Red SWARM**. También será el encargado de dar acceso a Internet a los servidores en caso de que éstos lo requieran para, principalmente, actualizaciones del sistema.
@@ -73,12 +125,7 @@ Por último, se encargan de centralizar el despliegue de los servicios. Cualquie
 Esto elimina la necesidad de ir uno por uno implementándolo y evita que los servidores lleguen a ejecutar versiones diferentes de la aplicación o servicio debido a falta de dependencias entre ordenadores.
 
 Por otro lado, los <u>**Nodos Worker**</u> serán los encargados de hostear el servicio o aplicación final. Son orquestados por el **Nodo Manager** y simplemente se limitan a seguir las órdenes que éste mismo les dé.
-
-## Ejemplo de implementación
-Explicado todo lo anterior, a continuación se muestra un ejemplo de implementación del proyecto DENTRO de una infraestructura LAN, sin tener en cuenta la posibilidad de que los servicios ejecutados sean accesibles desde Internet (básicamente, para uso interno exclusivamente).
-![Implementación de Docker Swarm](./img/plano.png)
-
-En la imágen se ve que el **Nodo Manager** actúa como intermediario entre ambas redes. Las peticiones que los clientes deseen hacer deberán ser realizadas a este mismo ordenador, el cuál se encargará de dirigir las peticiones a los diferentes **Nodos Worker** en función de la carga que tengan ambos, utilizando principalmente el protocolo **Round Robin**.
+<hr>
 
 ## Requisitos Mínimos
 
