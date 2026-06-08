@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Variables para que sea fácil de copiar
+# Sustituye estos valores por los tuyos
 IP_ADMIN="TU_IP_AQUI"
 IF_LAN="enp0s3"
 IF_SWARM="enp0s8"

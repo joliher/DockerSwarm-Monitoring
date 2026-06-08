@@ -6,12 +6,32 @@ El proyecto permite:
 - Ejecutar un balanceador de carga mediante <u>Docker Swarm</u>.
 - Permite escalado horizontal añadiendo más ordenadores (nodos).
 
-## 📑 Tabla de Contenidos
+## Instalación Rápida
+1. ✅ [**Paso 1: Valida requisitos**](docs/01-prerequisites.md)
+   - ¿Tienes 3 máquinas? ¿Ubuntu instalado? ¿Docker disponible?
+
+2. 🌐 [**Paso 2: Configura la red**](docs/02-network-setup.md)
+   - Asigna IPs a cada máquina
+   - Configura el manager como router
+
+3. 🐳 [**Paso 3: Crea la Docker Swarm**](docs/03-swarm-setup.md)
+   - Inicia Swarm en el manager
+   - Une los workers
+
+4. 📊 [**Paso 4: Instala servicios**](docs/04-services-setup.md)
+   - Prometheus, Grafana y Jenkins en el manager
+
+5. ✔️ [**Paso 5: Valida la instalación**](docs/05-post-deploy.md)
+   - Accede a los dashboards
+   - Verifica que todo funciona
+
+<br><br>
+
+# 📑 Tabla de Contenidos
 - [¿Qué es este proyecto?](#qué-es-este-proyecto)
 - [Conceptos básicos](#conceptos-básicos)
 - [Ejemplo de implementación](#ejemplo-de-implementación)
 - [Requisitos Mínimos](#requisitos-mínimos)
-- [Instalación Rápida](#instalación-rápida)
 - [Servicios disponibles](#servicios-disponibles-tras-el-despliegue)
 - [Próximos Pasos](#próximos-pasos)
 - [Referencias Externas](#referencias-externas)
@@ -140,25 +160,6 @@ Por otro lado, los <u>**Nodos Worker**</u> serán los encargados de hostear el s
 | **Software** | Docker & Docker Daemon |
 
 ➡️ **Más detalles:** [docs/01-prerequisites.md](docs/01-prerequisites.md)
-
-## Instalación Rápida
-1. ✅ [**Paso 1: Valida requisitos**](docs/01-prerequisites.md)
-   - ¿Tienes 3 máquinas? ¿Ubuntu instalado? ¿Docker disponible?
-
-2. 🌐 [**Paso 2: Configura la red**](docs/02-network-setup.md)
-   - Asigna IPs a cada máquina
-   - Configura el manager como router
-
-3. 🐳 [**Paso 3: Crea la Docker Swarm**](docs/03-swarm-setup.md)
-   - Inicia Swarm en el manager
-   - Une los workers
-
-4. 📊 [**Paso 4: Instala servicios**](docs/04-services-setup.md)
-   - Prometheus, Grafana y Jenkins en el manager
-
-5. ✔️ [**Paso 5: Valida la instalación**](docs/05-post-deploy.md)
-   - Accede a los dashboards
-   - Verifica que todo funciona
 
 ## Servicios disponibles tras el despliegue
 | Servicio | Puerto | Función | URL |
