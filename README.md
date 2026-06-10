@@ -1,7 +1,7 @@
 # Proyecto de balanceador de carga, CI/CD y monitorización de infraestructura.
 El proyecto permite:
 - Recopilar métricas de multiples servidores mediante <u>Prometheus</u> y <u>Node Exporter</u>.
-- Visualizar la información recopilada en paneles interactivos y peersonalizables con <u>Grafana</u>.
+- Visualizar la información recopilada en paneles interactivos y personalizables con <u>Grafana</u>.
 - Automatizar el despliegue de servicios con <u>Jenkins</u>.
 - Ejecutar un balanceador de carga mediante <u>Docker Swarm</u>.
 - Permite escalado horizontal añadiendo más ordenadores (nodos).
@@ -183,3 +183,7 @@ Por otro lado, los <u>**Nodos Worker**</u> serán los encargados de hostear el s
 - **Grafana**: https://grafana.com/docs/grafana/latest/
 - **Node Exporter**: https://github.com/prometheus/node_exporter
 - **Jenkins**: https://www.jenkins.io/doc/
+
+## Licencia
+Este proyecto está licenciado bajo la GNU General Public License v3.0.
+Ver el fichero [LICENSE](LICENSE) para más detalles.

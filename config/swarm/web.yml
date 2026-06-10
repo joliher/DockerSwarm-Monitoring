@@ -1,4 +1,4 @@
-# Stack de nginx
+# Stack de nginx - Nginx web server
 version: '3'
 services:
   nginx:

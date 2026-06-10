@@ -14,9 +14,9 @@ Por ejemplo:
         ports:
           - "<puerto>:<puerto>"
         deploy:
-        mode: global
-        placement:
-          constraints:
+          mode: global
+          placement:
+            constraints:
             - node.role == worker
 ```
 

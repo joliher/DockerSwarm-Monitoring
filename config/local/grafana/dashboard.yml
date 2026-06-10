@@ -1,3 +1,4 @@
+# Grafana dashboard provisioning - Auto-load dashboard configuration
 apiVersion: 1
 
 providers:

@@ -1,3 +1,4 @@
+# Grafana datasource configuration - Prometheus connection settings
 apiVersion: 1
 
 deleteDatasources:

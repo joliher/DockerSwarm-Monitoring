@@ -1,4 +1,4 @@
-# Stack de Node Exporter
+# Stack de Node Exporter - Prometheus node exporter for metrics collection
 version: '3'
 services:
   node-exporter:
